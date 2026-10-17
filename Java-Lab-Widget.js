@@ -63,24 +63,24 @@ async function main(){
     fetchedAt=new Date().toISOString();fm.writeString(cache,JSON.stringify({state,fetchedAt}));
   }catch(_){stale=true;try{const data=JSON.parse(fm.readString(cache));state=data.state;fetchedAt=data.fetchedAt;}catch(_){state=null;}}
   const r=state?LabRhythm.stats(state):null,mode=r?r.mode:'idle';
-  const w=new ListWidget();w.backgroundColor=new Color(mode==='rest'?'375a88':'6249a6');w.setPadding(12,13,10,13);
+  const w=new ListWidget();w.backgroundColor=new Color('f8faf6');w.setPadding(12,13,10,13);
   w.refreshAfterDate=new Date(Date.now()+15*60*1000);
   const tier=r?r.tier:'amber';
   const artName='widget-'+tier+'-'+mode+'.png';
-  const artPath=fm.joinPath(fm.cacheDirectory(),'java-lab-art-v4-'+artName);
+  const artPath=fm.joinPath(fm.cacheDirectory(),'java-lab-art-v5-'+artName);
   try{w.backgroundImage=fm.readImage(artPath);}catch(_){try{const req=new Request('https://roman-shulpov.github.io/java-backend-lab-site/'+artName);req.timeoutInterval=4;const pic=await req.loadImage();w.backgroundImage=pic;fm.writeImage(artPath,pic);}catch(_){}}
   const text=(value,size,color,bold=false)=>{const t=w.addText(value);t.font=bold?Font.boldSystemFont(size):Font.systemFont(size);t.textColor=new Color(color);t.lineLimit=1;t.minimumScaleFactor=.7;return t;};
-  text('Java Lab',11,'fff6fd',true);w.addSpacer(3);
+  text('Java Lab',11,'22453a',true);w.addSpacer(3);
   if(r){
-    text(String(r.streak),44,r.tier==='aurora'?'f5cbff':r.tier==='ruby'?'ffd1c5':'ffe59c',true);
-    text('дней с уроком в серии',9,'f2eafb');w.addSpacer(3);
-    text(r.mode==='lit'?'Урок завершён!':r.isStudy?'Время зажечь':'Сегодня отдых',10,'f7eafa',true);
+    text(String(r.streak),44,'193d35',true);
+    text('дней с уроком в серии',9,'697b70');w.addSpacer(3);
+    text(r.mode==='lit'?'Урок завершён!':r.isStudy?'Время зажечь':'Сегодня отдых',10,'697b70',true);
     let next=null;outer:for(let n=1;n<=45;n++)for(let d=1;d<=10;d++){if(!state.entries[n+'-'+String(d).padStart(2,'0')]?.done){next=[n,d];break outer;}}
-    w.addSpacer(3);text(next?next[0]+'M · день '+next[1]:'45 месяцев пройдены',9,'e5dcf8');
-    text('Эта неделя · '+r.count+' / 3',9,'dcd0f5');
-  }else{text('Нет данных',22,'fff3e5',true);text('Проверь доступ к GitHub',10,'e8dff6');}
+    w.addSpacer(3);text(next?next[0]+'M · день '+next[1]:'45 месяцев пройдены',9,'697b70');
+    text('Эта неделя · '+r.count+' / 3',9,'697b70');
+  }else{text('Нет данных',22,'193d35',true);text('Проверь доступ к GitHub',10,'697b70');}
   w.addSpacer();
-  text(stale?(state?'Копия · '+new Date(fetchedAt).toLocaleDateString('ru-RU'):'Открой Scriptable'):'ПН · СР · ПТ',7,'e5d8f3');
+  text(stale?(state?'Копия · '+new Date(fetchedAt).toLocaleDateString('ru-RU'):'Открой Scriptable'):'ПН · СР · ПТ',7,'697b70');
   w.url=HOME;Script.setWidget(w);if(!config.runsInWidget)await w.presentSmall();Script.complete();
 }
 await main();

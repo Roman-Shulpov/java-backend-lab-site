@@ -1,46 +1,30 @@
 <!doctype html>
-<html lang="ru">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' https://api.github.com; script-src 'self'; style-src 'self'; img-src 'self' data:; base-uri 'none'; form-action 'self'">
-  <meta name="theme-color" content="#7053ca">
-  <meta name="apple-mobile-web-app-title" content="Java Lab">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <meta name="description" content="Твой путь в Java backend: один день, одна понятная задача.">
-  <title>Java Backend Lab · Учиться по шагам</title>
-  <link rel="icon" type="image/svg+xml" href="./icon.svg">
-  <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
-  <link rel="manifest" href="./manifest.webmanifest">
-  <link rel="stylesheet" href="./style.css">
-  <link rel="stylesheet" href="./refresh.css">
-  <script src="./rhythm.js" defer></script>
-  <script src="./art.js" defer></script>
-  <script src="./dashboard.js" defer></script>
-  <script src="./pages.js" defer></script>
-  <script src="./app.js" defer></script>
-</head>
-<body>
-  <a href="#content" class="skip">К содержимому</a>
-  <aside class="sidebar">
-    <a class="brand" href="#home"><img class="brand-mark" src="./icon-192.png" alt=""><span>Java Lab<small>ЛИЧНАЯ МАСТЕРСКАЯ</small></span></a>
-    <nav aria-label="Основная навигация">
-      <a href="#home" data-nav="home"><span>◈</span> Сегодня</a>
-      <a href="#months" data-nav="months"><span>▦</span> Мой маршрут</a>
-      <a href="#projects" data-nav="projects"><span>◇</span> Мои проекты</a>
-      <a href="#activity" data-nav="activity"><span>▥</span> Мой ритм</a>
-      <a href="#help" data-nav="help"><span>?</span> Как заниматься</a>
-    </nav>
-    <div class="side-note"><span class="tiny-label">ТВОЙ ОРИЕНТИР</span><p>Уметь создавать.<br>Понимать свой код.<br>Двигаться регулярно.</p><small>Java backend · до 2030</small></div>
-    <a class="github-link" href="https://github.com/Roman-Shulpov/java-backend-lab" target="_blank" rel="noopener">↗ Мой GitHub</a>
-  </aside>
-  <div class="shell">
-    <header class="topbar"><span id="crumb">Моя учёба</span><div class="top-actions"><details class="theme-picker" id="theme-picker"><summary class="theme-trigger" aria-label="Выбрать тему оформления">◐ <span>Тема</span></summary><div class="theme-menu" role="group" aria-label="Темы оформления"><button type="button" data-theme-choice="meadow"><i class="theme-swatch meadow"></i> Лайм <span>✓</span></button><button type="button" data-theme-choice="night"><i class="theme-swatch night"></i> Космос <span>✓</span></button><button type="button" data-theme-choice="clay"><i class="theme-swatch clay"></i> Закат <span>✓</span></button></div></details><span id="sync-status" class="save-status">На компьютере</span><button id="sync" class="button small secondary">↑ Сохранить в GitHub</button><span class="avatar" aria-label="Роман">Р</span></div></header>
-    <main id="content" tabindex="-1"><p class="loading">Открываю твою мастерскую…</p></main>
-    <footer class="site-footer">Маленькая работа сегодня — понятнее код завтра.<span>ПН · СР · ПТ — учимся, в остальные дни отдыхаем</span></footer>
-  </div>
-  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+<html lang="ru"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' https://api.github.com; script-src 'self'; style-src 'self'; img-src 'self' data:; base-uri 'none'; form-action 'self'">
+  <meta name="theme-color" content="#f5f7f8"><meta name="apple-mobile-web-app-title" content="Java Lab"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="description" content="Java Lab — личный кабинет обучения Java backend. Уроки, практика и проекты по шагам.">
+<title>Java Lab · Моя учёба</title>
+<link rel="icon" type="image/svg+xml" href="./icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png?v=3"><link rel="manifest" href="./manifest.webmanifest">
+<link rel="stylesheet" href="./style.css"><link rel="stylesheet" href="./refresh.css">
+<script src="./rhythm.js" defer></script><script src="./art.js" defer></script><script src="./dashboard.js" defer></script><script src="./pages.js" defer></script>
+  <script src="./app.js" defer></script><script src="./ui.js" defer></script>
+</head><body>
+<a href="#content" class="skip">К содержимому</a>
+<header class="app-header"><div class="header-inner">
+<a class="brand" href="#home" aria-label="Java Lab — главная"><img src="./brand-mark.svg" class="brand-mark" alt=""><span>Java Lab</span></a>
+<nav class="main-nav" aria-label="Основная навигация"><a href="#home" data-nav="home">Сегодня</a><a href="#months" data-nav="months">Мой путь</a><a href="#projects" data-nav="projects">Проекты</a><a href="#activity" data-nav="activity">Активность</a></nav>
+<div class="header-tools">
+<button class="icon-button" id="open-search" type="button" aria-label="Найти урок" title="Найти урок · Ctrl+K"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 5 5"/></svg></button>
+<details class="header-menu schedule-menu" id="schedule-menu" data-menu><summary class="icon-button" aria-label="Моё расписание" title="Моё расписание"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg></summary><div class="menu-panel" id="schedule-content"></div></details>
+<details class="theme-picker header-menu" id="theme-picker" data-menu><summary class="icon-button theme-trigger" aria-label="Выбрать тему оформления" title="Тема оформления"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9Z"/></svg></summary><div class="theme-menu menu-panel" role="group" aria-label="Темы оформления"><span class="menu-caption">Оформление</span><button type="button" data-theme-choice="meadow"><i class="theme-swatch meadow"></i> Светлая <span>✓</span></button><button type="button" data-theme-choice="night"><i class="theme-swatch night"></i> Графит <span>✓</span></button><button type="button" data-theme-choice="clay"><i class="theme-swatch clay"></i> Песочная <span>✓</span></button></div></details>
+<details class="header-menu profile-menu" id="profile-menu" data-menu><summary class="profile-trigger" aria-label="Меню личного кабинета"><span class="avatar">Р</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg></summary><div class="menu-panel"><b class="profile-name">Роман</b><span class="menu-caption">Личный кабинет</span><a href="#help" data-nav="help">Как заниматься</a><a href="./iphone.html" target="_blank" rel="noopener">Приложение и виджет</a><a href="https://github.com/Roman-Shulpov/java-backend-lab" target="_blank" rel="noopener">Мой GitHub ↗</a></div></details>
+</div></div></header>
+<div class="shell"><div class="workspace-status"><span id="crumb">Моя учёба</span><div class="top-actions"><span id="sync-status" class="save-status" role="status">На компьютере</span><button id="sync" class="button small secondary">Синхронизировать</button></div></div>
+<main id="content" tabindex="-1"><p class="loading">Открываю учебный кабинет…</p></main>
+<footer class="site-footer"><a class="footer-brand" href="#home">Java Lab</a><span>ПН · СР · ПТ — учёба. Остальное — в своём темпе.</span><a href="#help">Помощь →</a></footer></div>
+<dialog id="lesson-search" class="search-dialog" aria-labelledby="search-title"><div class="search-top"><label id="search-title" for="search-input">Найти урок</label><button type="button" class="icon-button" id="close-search" aria-label="Закрыть поиск">×</button></div><input id="search-input" type="search" placeholder="Например, методы, SQL или Docker" autocomplete="off"><p class="search-hint">Поиск по всем 45 месяцам обучения</p><div id="search-results" aria-live="polite"></div><div class="search-footer">Enter — открыть первый результат <span>Esc — закрыть</span></div></dialog>
+<div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
 <dialog id="pages-connect" class="connect-dialog" aria-labelledby="connect-title">
   <form method="dialog"><span class="eyebrow">СИНХРОНИЗАЦИЯ</span><h2 id="connect-title">Подключить GitHub</h2>
   <p>Уроки и отметки работают на этом устройстве без ключа. Для переноса отметок между устройствами нужен отдельный ключ с доступом только к java-backend-lab: Contents → Read and write.</p>
@@ -49,5 +33,4 @@
   <label class="remember-key"><input id="pages-remember" type="checkbox"> Запомнить на моём устройстве</label><small>Для автоматической синхронизации после закрытия сайта. Ключ хранится в браузере этого устройства. Без галочки — только до закрытия вкладки. Ключ виджета остаётся Read-only.</small>
   <div class="dialog-buttons"><button value="cancel" class="button secondary">Позже</button><button value="connect" class="button">Синхронизировать</button></div>
   </form></dialog>
-</body>
-</html>
+</body></html>
