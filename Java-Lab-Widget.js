@@ -7,6 +7,7 @@ async function main() {
     if (config.runsInWidget) {
       const w = new ListWidget();
       w.addText('Открой Java Lab в Scriptable для настройки.');
+      w.url = 'https://roman-shulpov.github.io/java-backend-lab-site/#home';
       Script.setWidget(w); Script.complete(); return;
     }
     const setup = new Alert();
@@ -45,7 +46,7 @@ async function main() {
   const symbol = top.addImage(SFSymbol.named('flame.fill').image);
   symbol.imageSize = new Size(25, 30);
   top.addSpacer(8);
-  const title = top.addText('JAVA LAB'); title.font = Font.semiboldSystemFont(12); title.textColor = new Color('d9edac');
+  const title = top.addText('Java Lab'); title.font = Font.semiboldSystemFont(12); title.textColor = new Color('d9edac');
   w.addSpacer(8);
   let next = [1,1];
   if (state) {
@@ -82,7 +83,7 @@ async function main() {
     const age = w.addText('Копия: ' + new Date(fetchedAt).toLocaleDateString('ru-RU'));
     age.font = Font.systemFont(8); age.textColor = new Color('a8bfa9');
   }
-  w.url = next ? 'https://github.com/Roman-Shulpov/java-backend-lab/blob/main/learn/' + next[0] + 'M/' + String(next[1]).padStart(2,'0') + '.md' : 'https://github.com/Roman-Shulpov/java-backend-lab/blob/main/CAREER.md';
+  w.url = 'https://roman-shulpov.github.io/java-backend-lab-site/#home';
   Script.setWidget(w);
   if (!config.runsInWidget) await w.presentSmall();
   Script.complete();
