@@ -64,19 +64,21 @@
     try{store();}catch(error){working=before;throw error;}
     return snapshot();
   }
-  function credentials(){
-    if(credential)return Promise.resolve(true);
+  function credentials(force=false){
+    if(credential&&!force)return Promise.resolve(true);
     const dialog=document.getElementById('pages-connect');
     const token=dialog.querySelector('#pages-token');
     const branch=dialog.querySelector('#pages-branch');
     branch.value=selectedBranch;
     token.value='';
+    token.placeholder=credential?'Новый ключ (пусто — оставить прежний)':'github_pat_...';
+    dialog.querySelector('#pages-remember').checked=Boolean(localStorage.getItem(AUTH));
     dialog.returnValue='cancel';
     return new Promise(resolve=>{
       const finish=()=>{
         dialog.removeEventListener('close',finish);
         if(dialog.returnValue!=='connect'){resolve(false);return;}
-        const value=token.value.trim(),name=branch.value.trim();
+        const value=token.value.trim()||credential,name=branch.value.trim();
         token.value='';
         if(!value||!name||!(/^[A-Za-z0-9._/-]+$/.test(name))){resolve(false);return;}
         credential=value;selectedBranch=name;
@@ -90,10 +92,27 @@
       token.focus();
     });
   }
+  async function request(url,method='GET',body){
+    const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),15000);
+    try{return await fetch(url,{method,cache:'no-store',signal:controller.signal,headers:{Authorization:'Bearer '+credential,Accept:'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28',...(body?{'Content-Type':'application/json'}:{})},body:body?JSON.stringify(body):undefined});}
+    catch{throw Error('Нет ответа GitHub. Урок сохранён на этом устройстве. Проверь сеть и повтори синхронизацию.');}
+    finally{clearTimeout(timer);}
+  }
+  function rejectKey(message){credential='';localStorage.removeItem(AUTH);throw Error(message+' Отметки на устройстве целы. Нажми «Подключить GitHub» и введи исправленный ключ.');}
   async function remote(method,body){
-    const response=await fetch(REMOTE+'?ref='+encodeURIComponent(selectedBranch),{method,headers:{Authorization:'Bearer '+credential,Accept:'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28',...(body?{'Content-Type':'application/json'}:{})},body:body?JSON.stringify(body):undefined});
-    if(response.status===401||response.status===403){credential='';localStorage.removeItem(AUTH);throw Error('GitHub не принял ключ. Подключи сайт заново: только java-backend-lab, Contents: Read and write. Ключ виджета Read-only остаётся отдельным.');}
-    if(response.status===404)throw Error('Файл прогресса или ветка не найдены. Проверь ветку и доступ ключа к java-backend-lab.');
+    const response=await request(REMOTE+'?ref='+encodeURIComponent(selectedBranch),method,body);
+    if(response.status===429||(response.status===403&&(response.headers.get('Retry-After')||response.headers.get('X-RateLimit-Remaining')==='0')))throw Error('GitHub временно ограничил запросы. Повтори позже. Ключ и локальный прогресс сохранены.');
+    if(response.status===401||response.status===403)rejectKey('Ключ не даёт нужного доступа. Выбери java-backend-lab (без -site) и Contents → Read and write; разрешение Actions не подходит.');
+    if(response.status===404){
+      const repo='https://api.github.com/repos/Roman-Shulpov/java-backend-lab';
+      const access=await request(repo);
+      if(access.status===404||access.status===401||access.status===403)rejectKey('Ключ не видит закрытый java-backend-lab. В настройках ключа выбери этот репозиторий без -site, Contents → Read and write и нажми Update.');
+      if(!access.ok)throw Error('GitHub временно не ответил на проверку доступа. Прогресс на устройстве сохранён.');
+      const branch=await request(repo+'/branches/'+encodeURIComponent(selectedBranch));
+      if(branch.status===404)throw Error('Ветка «'+selectedBranch+'» не найдена. Помощь → «Изменить подключение»: укажи main. Локальные отметки сохранены.');
+      if(branch.ok)throw Error('Ветка доступна, но ключ не читает progress/state.json. Проверь Contents → Read and write. Если доступ уже выдан, проверь наличие файла в GitHub. Помощь → «Изменить подключение». Локальные отметки сохранены.');
+      throw Error('Не удалось проверить ветку GitHub. Повтори позже; локальные отметки сохранены.');
+    }
     if(response.status===409||response.status===422)throw Error('Ветка изменилась на GitHub. Перезагрузи страницу и повтори синхронизацию.');
     if(!response.ok)throw Error('GitHub временно не сохранил прогресс. Локальные отметки целы.');
     return response.json();
@@ -140,6 +159,7 @@
       if(path==='/api/state')return reply(snapshot());
       if(path==='/api/export')return reply(copy(working));
       if(path==='/api/progress')return reply(change(JSON.parse(options.body)));
+      if(path==='/api/connection')return reply({configured:await credentials(true),branch:selectedBranch});
       if(path==='/api/sync')return reply(await sync(JSON.parse(options?.body||'{}').interactive!==false));
       return reply({error:'Неизвестное действие.'},404);
     }catch(error){return reply({error:error.message||'Не удалось сохранить.'},409);}

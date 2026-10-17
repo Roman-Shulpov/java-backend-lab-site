@@ -30,7 +30,7 @@
 <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
 <dialog id="pages-connect" class="connect-dialog" aria-labelledby="connect-title">
   <form method="dialog"><span class="eyebrow">СИНХРОНИЗАЦИЯ</span><h2 id="connect-title">Подключить GitHub</h2>
-  <p>Уроки и отметки работают на этом устройстве без ключа. Для переноса отметок между устройствами нужен отдельный ключ с доступом только к java-backend-lab: Contents → Read and write.</p>
+  <p>Отметки пока сохранены на этом устройстве. Выбери в настройках ключа <strong>Roman-Shulpov/java-backend-lab (без -site)</strong> и <strong>Contents → Read and write</strong>. Разрешение Actions не подходит. Ветка обычно main. После изменения прав нажми Update на GitHub. Подключение не удалит локальные уроки.</p>
   <label for="pages-branch">Ветка с прогрессом</label><input id="pages-branch" value="main" autocomplete="off">
   <label for="pages-token">Ключ GitHub</label><input id="pages-token" type="password" autocomplete="off" placeholder="github_pat_...">
   <label class="remember-key"><input id="pages-remember" type="checkbox"> Запомнить на моём устройстве</label><small>Для автоматической синхронизации после закрытия сайта. Ключ хранится в браузере этого устройства. Без галочки — только до закрытия вкладки. Ключ виджета остаётся Read-only.</small>
