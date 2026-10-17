@@ -109,6 +109,7 @@
       if(access.status===404||access.status===401||access.status===403)rejectKey('Ключ не видит закрытый java-backend-lab. В настройках ключа выбери этот репозиторий без -site, Contents → Read and write и нажми Update.');
       if(!access.ok)throw Error('GitHub временно не ответил на проверку доступа. Прогресс на устройстве сохранён.');
       const branch=await request(repo+'/branches/'+encodeURIComponent(selectedBranch));
+      if(branch.status===401||branch.status===403)rejectKey('Репозиторий виден, но ключ не читает его содержимое. Добавь Contents → Read and write вместо Actions и нажми Update на GitHub.');
       if(branch.status===404)throw Error('Ветка «'+selectedBranch+'» не найдена. Помощь → «Изменить подключение»: укажи main. Локальные отметки сохранены.');
       if(branch.ok)throw Error('Ветка доступна, но ключ не читает progress/state.json. Проверь Contents → Read and write. Если доступ уже выдан, проверь наличие файла в GitHub. Помощь → «Изменить подключение». Локальные отметки сохранены.');
       throw Error('Не удалось проверить ветку GitHub. Повтори позже; локальные отметки сохранены.');
