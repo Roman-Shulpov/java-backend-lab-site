@@ -6,7 +6,7 @@
 
 1. Установи [Scriptable](https://scriptable.app/) на iPhone.
 2. На GitHub открой [создание fine-grained token](https://github.com/settings/personal-access-tokens/new) в настройках **аккаунта**. Назови `Java Lab iPhone`, выбери срок примерно год, **Only select repositories → java-backend-lab**, Repository permissions → **Contents: Read-only**. GitHub сам добавит Metadata: Read-only. Account permissions оставь пустыми. Скопируй токен для следующего шага; в чат его отправлять не нужно.
-3. На iPhone открой [код виджета](https://github.com/Roman-Shulpov/java-backend-lab-site/blob/main/Java-Lab-Widget.js) и нажми значок копирования содержимого файла. В Scriptable создай скрипт `Java Lab`, вставь код целиком и запусти.
+3. На iPhone открой [страницу установки с кнопкой «Скопировать готовый код»](https://roman-shulpov.github.io/java-backend-lab-site/iphone.html). В Scriptable создай скрипт `Java Lab`, вставь код целиком и запусти. Если уже вставил неполный код, сначала выдели и удали его весь.
 4. В окне самого Scriptable вставь токен и укажи ветку, куда кабинет отправляет progress/state.json: сначала `main`, позже может быть `learning/m01`. Токен сохраняется в Keychain телефона, не в коде.
 5. Удерживай пустое место на главном экране → добавь маленький виджет Scriptable. В настройках виджета выбери скрипт **Java Lab**. В поле Parameter можно указать другую ветку без изменения кода.
 

@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'self'; base-uri 'none'">
+  <title>Огонёк на iPhone · Java Backend Lab</title>
+  <link rel="stylesheet" href="./iphone.css">
+  <script src="./iphone-install.js" defer></script>
+</head>
+<body>
+  <main>
+    <a class="back" href="./">← Учебный кабинет</a>
+    <p class="eyebrow">JAVA BACKEND LAB · IPHONE</p>
+    <h1>Огонёк на экран телефона</h1>
+    <p class="lead">Код готов. Скопируй его одной кнопкой, вставь в Scriptable и введи новый ключ доступа только там.</p>
+    <section class="card">
+      <h2>1. Вставь код</h2>
+      <p>Установи <a href="https://scriptable.app/">Scriptable</a>. На экране <strong>Untitled Script 1</strong> удали весь старый текст: коснись кода, выбери всё и удали.</p>
+      <button id="copy" type="button">Скопировать готовый код</button>
+      <p id="copy-status" role="status" aria-live="polite"></p>
+      <details id="fallback"><summary>Если кнопка копирования не сработала</summary><p>Нажми на поле ниже, выбери весь текст и скопируй. Не копируй заголовок или номера строк.</p><textarea id="code" readonly aria-label="Готовый код виджета"></textarea></details>
+      <p>Вернись в Scriptable, вставь код вместо удалённого, назови скрипт <strong>Java Lab</strong> и нажми ▶.</p>
+    </section>
+    <section class="card">
+      <h2>2. Введи ключ</h2>
+      <p>Ключ, который ты прислал в чат, нужно <a href="https://github.com/settings/personal-access-tokens">отозвать</a>. Создай новый на срок около года: <strong>Only select repositories → java-backend-lab → Contents: Read-only</strong>. Metadata: Read-only GitHub добавит сам.</p>
+      <p>После запуска скрипт покажет окно: вставь <strong>новый</strong> ключ в поле GitHub token, в поле «Ветка» оставь <strong>main</strong> и нажми «Сохранить». Ключ сохранится в Keychain iPhone; в код его вписывать не надо.</p>
+    </section>
+    <section class="card">
+      <h2>3. Поставь виджет</h2>
+      <p>На главном экране зажми пустое место → добавь маленький виджет <strong>Scriptable</strong> → в настройках виджета выбери скрипт <strong>Java Lab</strong>.</p>
+      <p class="tip">Виджет показывает последнюю копию прогресса из GitHub. После занятия в учебном кабинете нажимай «Сохранить в GitHub». Обновление виджета зависит от iOS и может занять время.</p>
+    </section>
+  </main>
+</body>
+</html>
