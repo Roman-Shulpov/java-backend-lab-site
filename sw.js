@@ -1,4 +1,4 @@
-const CACHE='java-lab-shell-v3';
+const CACHE='java-lab-shell-v4';
 const ASSETS=['./','index.html','app.js','pages.js','rhythm.js','art.js','dashboard.js','style.css','refresh.css','lessons.json','manifest.webmanifest','apple-touch-icon.png','icon-192.png','icon-512.png','icon.svg'];
 const urls=new Set(ASSETS.map(x=>new URL(x,self.registration.scope).href));
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(c=>c.addAll([...urls])).then(()=>self.skipWaiting())));
