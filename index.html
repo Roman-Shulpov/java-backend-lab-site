@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' https://api.github.com; script-src 'self'; style-src 'self'; img-src 'self' data:; base-uri 'none'; form-action 'self'">
+  <meta name="theme-color" content="#183e35">
+  <meta name="description" content="Твой путь в Java backend: один день, одна понятная задача.">
+  <title>Java Backend Lab · Учиться по шагам</title>
+  <link rel="icon" type="image/svg+xml" href="./icon.svg">
+  <link rel="stylesheet" href="./style.css">
+  <script src="./pages.js" defer></script>
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <a href="#content" class="skip">К содержимому</a>
+  <aside class="sidebar">
+    <a class="brand" href="#home"><span class="brand-mark">j.</span><span>backend lab<small>ЛИЧНАЯ МАСТЕРСКАЯ</small></span></a>
+    <nav aria-label="Основная навигация">
+      <a href="#home" data-nav="home"><span>◈</span> Сегодня</a>
+      <a href="#months" data-nav="months"><span>▦</span> Мой маршрут</a>
+      <a href="#projects" data-nav="projects"><span>◇</span> Мои проекты</a>
+      <a href="#help" data-nav="help"><span>?</span> Как заниматься</a>
+    </nav>
+    <div class="side-note"><span class="tiny-label">ТВОЙ ОРИЕНТИР</span><p>Уметь создавать.<br>Понимать свой код.<br>Двигаться регулярно.</p><small>Java backend · до 2030</small></div>
+    <a class="github-link" href="https://github.com/Roman-Shulpov/java-backend-lab" target="_blank" rel="noopener">↗ Мой GitHub</a>
+  </aside>
+  <div class="shell">
+    <header class="topbar"><span id="crumb">Моя учёба</span><div class="top-actions"><details class="theme-picker" id="theme-picker"><summary class="theme-trigger" aria-label="Выбрать тему оформления">◐ <span>Тема</span></summary><div class="theme-menu" role="group" aria-label="Темы оформления"><button type="button" data-theme-choice="meadow"><i class="theme-swatch meadow"></i> Мох <span>✓</span></button><button type="button" data-theme-choice="night"><i class="theme-swatch night"></i> Ночь <span>✓</span></button><button type="button" data-theme-choice="clay"><i class="theme-swatch clay"></i> Терракота <span>✓</span></button></div></details><span id="sync-status" class="save-status">На компьютере</span><button id="sync" class="button small secondary">↑ Сохранить в GitHub</button><span class="avatar" aria-label="Роман">Р</span></div></header>
+    <main id="content" tabindex="-1"><p class="loading">Открываю твою мастерскую…</p></main>
+    <footer class="site-footer">Маленькая работа сегодня — понятнее код завтра.<span>3 занятия в неделю · свой темп</span></footer>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+<dialog id="pages-connect" class="connect-dialog" aria-labelledby="connect-title">
+  <form method="dialog"><span class="eyebrow">СИНХРОНИЗАЦИЯ</span><h2 id="connect-title">Подключить GitHub</h2>
+  <p>Уроки и отметки работают на этом устройстве без ключа. Для переноса отметок между устройствами нужен отдельный ключ с доступом только к java-backend-lab: Contents → Read and write.</p>
+  <label for="pages-branch">Ветка с прогрессом</label><input id="pages-branch" value="main" autocomplete="off">
+  <label for="pages-token">Ключ GitHub</label><input id="pages-token" type="password" autocomplete="off" placeholder="github_pat_...">
+  <small>Ключ живёт только в этой вкладке. Ключ виджета iPhone с правом Read-only менять не нужно.</small>
+  <div class="dialog-buttons"><button value="cancel" class="button secondary">Позже</button><button value="connect" class="button">Синхронизировать</button></div>
+  </form></dialog>
+</body>
+</html>
