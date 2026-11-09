@@ -25,7 +25,7 @@
   function week(state) {
     const now=dateBarnaul(), one=86400000, today=Date.parse(now+'T00:00:00Z');
     const monday=today-((new Date(today).getUTCDay()+6)%7)*one;
-    const seen=new Set(state.sessions.map(s=>s.date).filter(s=>/^\d{4}-\d{2}-\d{2}$/.test(s)));
+    const seen=new Set(state.sessions.filter(s=>s.kind!=='pause').map(s=>s.date).filter(s=>/^\d{4}-\d{2}-\d{2}$/.test(s)));
     const weeks=new Map();
     for(const stamp of seen){const day=Date.parse(stamp+'T00:00:00Z');if(day>today)continue;const begin=day-((new Date(day).getUTCDay()+6)%7)*one;weeks.set(begin,(weeks.get(begin)||0)+1);}
     const count=weeks.get(monday)||0;let streak=0,cursor=count>=3?monday:monday-7*one;

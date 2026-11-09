@@ -19,3 +19,7 @@ dialog{color:var(--ink);background:var(--paper);border:1px solid var(--line);bor
 @media(max-width:760px){.lesson-layout{grid-template-columns:minmax(0,1fr)}.schedule-menu .menu-panel{position:fixed;top:66px;right:16px;left:auto;width:calc(100vw - 32px);max-width:330px;min-width:0}}
 
 .avatar img{display:block;width:100%;height:100%;object-fit:cover;border-radius:inherit}
+
+.lesson-orientation{background:var(--soft);padding:22px;border-radius:14px;margin-bottom:24px}.lesson-file{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.lesson-file code{overflow-wrap:anywhere;flex:1;min-width:0}.lesson-jumps{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}.lesson-body section{scroll-margin-top:160px;margin-top:28px}.workspace-instructions{margin-top:18px}.lesson-body details{padding:12px 0;border-bottom:1px solid var(--line)}.lesson-body summary{cursor:pointer;font-weight:600}.lesson-body pre{overflow-x:auto}.lesson-body h2{font-size:22px}.lesson-body li{margin-bottom:10px}
+
+.lesson-body section[hidden]{display:none}.lesson-jumps [aria-pressed="true"]{background:var(--green);color:white}.lesson-body dd{margin:5px 0 16px}
